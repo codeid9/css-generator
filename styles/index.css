@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  /* Colors */
+  --bg-color: #ffffff;
+  --text-color: #0f172a;
+  --accent-color: #3b82f6;
+  --sidebar-bg: #f8fafc;
+  --nav-height: 60px;
+  
+  /* Fonts from Google Fonts */
+  --font-main: "Poppins", sans-serif;
+  --font-code: "JetBrains Mono", monospace;
+}
+/* Dark Mode Override */
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --sidebar-bg: #1e293b;
+  --accent-color: #60a5fa;
+}
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  margin: 0;
+  transition: background 0.3s, color 0.3s;
+}
+/* ----navbar section---- */
+.navbar {
+  height: var(--nav-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: var(--sidebar-bg);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.nav-links a{
+    display: inline-flex;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+}
+/* ----main section---- */
+.app-container{
+    min-height: calc(100vh - var(--nav-height));
+    width: 100%;
+    display: flex;
+}
+/* side bar */
+.sidebar{
+    width: 300px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid rgba(0,0,0,0.1);
+    padding: 20px 10px;
+    transition: width 0.3s ease-in;
+    overflow: hidden;
+}
+.sidebar.active{
+    width: 50px;
+}
+.sidebar-header{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.sidebar-toggle{
+    border: none;
+    background: none;
+}
+.sidebar-toggle svg{
+    cursor: pointer;
+}
+/* preview area */
+.preview-area{
+    width: 100%;
+}
+/* ----footer----  */
+footer{
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+footer p{
+    text-align: center;
+    padding: 10px 0;
+}

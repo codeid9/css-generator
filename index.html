@@ -1,13 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Maker</title>
-    <link rel="stylesheet" href="./styles/index.css">
-</head>
-<body>
-    
-</body>
-<script src="./scripts/main.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSS Maker</title>
+        <link rel="stylesheet" href="./styles/index.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">
+                <i data-lucide="layout"></i>
+                <span>CSSGen</span>
+            </div>
+            <div class="nav-links">
+                <a
+                    href="https://github.com/codeid9"
+                    class="icon-btn"
+                    target="_blank"
+                >
+                    <i data-lucide="code"></i>
+                </a>
+                <button id="theme-toggle" class="icon-btn">
+                    <i data-lucide="sun"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- main section -->
+        <main class="app-container">
+            <!-- sidebar section -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <button class="sidebar-toggle">
+                        <i data-lucide="panel-left-close"></i>
+                    </button>
+                </div>
+            
+            </aside>
+            <!-- preview or code area -->
+            <section class="preview-area">
+                <div id="target-box">Preview Box</div>
+            </section>
+        </main>
+        <!-- footer section -->
+        <footer>
+            <p>Made with ❤️ by Codeid9</p>
+        </footer>
+        <!-- scripts -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="./scripts/main.js"></script>
+    </body>
 </html>
