@@ -93,6 +93,60 @@ body {
 .sidebar-toggle svg{
     cursor: pointer;
 }
+.sidebar hr{
+    width: 100%;
+    margin: 10px 0;
+    border: none;
+    height: 1px;
+    background:rgba(0,0,0,0.4);
+}
+/* tools tab */
+#tools-tab{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.tab-btn{
+    border: 2px solid transparent;
+    background: none;
+    border: none;
+}
+.tab-btn.active{
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    padding: 2px;
+}
+.tab-btn.active svg{
+    color: var(--accent-color);
+}
+.tab-btn svg{
+    height: 22px;
+}
+
+/* controls tab */
+#controls-tab{
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in;
+}
+#controls-tab h3{
+    margin-bottom: 10px;
+}
+.tool-settings{
+    display: none;
+}
+.tool-settings.active{
+    display: block;
+}
+.input-group{
+    width: 100%;
+    padding:5px 0;
+    display: flex;
+    flex-direction: column;
+}
+.input-group label{
+    font-size: small;
+}
 /* preview area */
 .preview-area{
     width: 100%;

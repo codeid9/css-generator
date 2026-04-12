@@ -37,10 +37,69 @@
             <aside class="sidebar">
                 <div class="sidebar-header">
                     <button class="sidebar-toggle">
-                        <i data-lucide="panel-left-close"></i>
+                        <i data-lucide="panel-left-close" class="icon-btn"></i>
                     </button>
                 </div>
-            
+                <hr />
+                <div id="tools-tab">
+                    <button
+                        class="tab-btn active"
+                        title="Box Shadow"
+                        data-tool="box-shadow"
+                    >
+                        <i class="icon-btn" data-lucide="layers"></i>
+                    </button>
+                    <button
+                        class="tab-btn"
+                        title="Text Shadow"
+                        data-tool="text-shadow"
+                    >
+                        <i class="icon-btn" data-lucide="type"></i>
+                    </button>
+                    <button
+                        class="tab-btn"
+                        title="Border Radius"
+                        data-tool="border-radius"
+                    >
+                        <i class="icon-btn" data-lucide="square"></i>
+                    </button>
+                </div>
+                <hr />
+                <div id="controls-tab">
+                    <h3 id="tool-title">Box Shadow</h3>
+                    <div id="box-shadow-controls" class="tool-settings active">
+                        <div class="input-group">
+                            <label>Shift Shadow (X)</label>
+                            <input type="range" min="-50" max="50" value="10" id="bs-x" />
+                        </div>
+                        <div class="input-group">
+                            <label>Shift Shadow (Y)</label>
+                            <input type="range" min="-50" max="50" value="10" id="bs-y" />
+                        </div>
+                        <div class="input-group">
+                            <label>Shadow Spreadness</label>
+                            <input type="range" min="-50" max="50" value="2" id="bs-spread" />
+                        </div>
+                        <div class="input-group">
+                            <label>Blur</label>
+                            <input type="range" min="0" max="100" value="20" id="bs-blur" />
+                        </div>
+                        <div class="input-group">
+                            <label>Shadow Opacity</label>
+                            <input type="range" step="0.01" min="0" max="1" value="0.5" id="bs-opacity" />
+                        </div>
+                        <div class="input-group">
+                            <label>Shadow Color</label>
+                            <input type="color" id="bs-color"/>
+                        </div>
+                    </div>
+                    <div id="text-shadow-controls" class="tool-settings">
+                        <p>pending</p>
+                    </div>
+                    <div id="border-radius-controls" class="tool-settings">
+                        <p>pending</p>
+                    </div>
+                </div>
             </aside>
             <!-- preview or code area -->
             <section class="preview-area">
