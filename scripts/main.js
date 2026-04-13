@@ -12,15 +12,15 @@ const appState = {
             y: 10,
             blur: 20,
             spread: 2,
-            color: "rgb(0,0,0)",
-            opacity: 0.5,
+            color: "#000000",
+            opacity: 1,
         },
         textShadow: {
             x: 10,
             y: 10,
             blur: 20,
-            color: "rgb(0,0,0)",
-            opacity: 0.5,
+            color: "#000000",
+            opacity: 1,
         },
         borderRadius: {
             all: 8,
@@ -69,7 +69,6 @@ function updateBoxShadow() {
         appState.settings.boxShadow.spread = spread.value;
         appState.settings.boxShadow.color = color.value;
         appState.settings.boxShadow.opacity = opacity.value;
-        console.log(appState);
         renderPreview()
     }
 
@@ -85,15 +84,20 @@ function updateBoxShadow() {
 }
 
 function renderPreview(){
-    // console.log(appState.settings.boxShadow);
-    // const rgba = RGBtoRGBA(color,opacity);
-    // const shadowStr = `${x}px ${y}px ${blur}px ${spread}px ${rgba}`;
-
+    const code = document.getElementById('code');
+    const targetBox = document.getElementById('target-box');
+    const {x,y,blur,spread,color,opacity} = appState.settings.boxShadow;
+    const rgba = HextoRGBA(color,opacity);
+    const shadowStr = `${x}px ${y}px ${blur}px ${spread}px ${rgba}`;
+    code.innerText = `box-shadow:${shadowStr};`
+    targetBox.style.boxShadow = shadowStr;
 }
 
-function RGBtoRGBA(color,opacity){
-    const clr = color.split("(")[1].split(")")[0].split(',');
-    return `rgba(${clr[0]},${clr[1]},${clr[2]},${opacity})`;
+function HextoRGBA(hex,opacity){
+    let r = parseInt(hex.slice(1,3),16);
+    let g = parseInt(hex.slice(3,5),16);
+    let b = parseInt(hex.slice(5,7),16);
+    return `rgba(${r},${g},${b},${opacity})`;
 }
 
 // initilize App
@@ -102,7 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial setup
     initTabs();
     updateBoxShadow()
+    renderPreview()
 });
+document.getElementById('copy-code-btn').addEventListener('click',()=>{
+    const text = document.getElementById('code').innerText
+    window.navigator.clipboard.writeText(text)
+})
 // toggle sidebar
 sidebarToggle.addEventListener("click", () => {
     isSidebarOpen = isSidebarOpen ? false : true;
