@@ -25,11 +25,10 @@ const appState = {
             opacity: 1,
         },
         borderRadius: {
-            all: 8,
-            topLeft: 8,
-            topRight: 8,
-            bottomLeft: 8,
-            bottomRight: 8,
+            tl: 8,
+            tr: 8,
+            bl: 8,
+            br: 8,
         },
     },
 };
@@ -89,6 +88,18 @@ function initInputs() {
             });
         }
     });
+    // border-radius listeners
+    const brControls = ["b-tl","b-tr","b-bl","b-br",];
+    brControls.forEach((id)=>{
+        const input = document.getElementById(id);
+        if(input){
+            input.addEventListener("input",(e)=>{
+                const prop = id.split("-")[1];
+                appState.settings.borderRadius[prop] = e.target.value;
+                renderPreview();
+            })
+        }
+    })
 }
 // View Output
 function renderPreview() {
@@ -103,15 +114,20 @@ function renderPreview() {
     const ts = s.textShadow;
     const tsColor = HextoRGBA(ts.color, ts.opacity);
     const tsStr = `${ts.x}px ${ts.y}px ${ts.blur}px ${tsColor}`;
-
+    // border-radius
+    const br = s.borderRadius;
+    const borderRadiusStr = `${br.tl}px ${br.tr}px ${br.br}px ${br.bl}px`;
     // apply css on target
     targetBox.style.boxShadow = bsStr;
     targetBox.style.textShadow = tsStr;
+    targetBox.style.borderRadius = borderRadiusStr;
     // Show Active Tool's output
     if (appState.activeTool === "box-shadow") {
         codeOutput.innerText = `box-shadow: ${bsStr};`;
     } else if (appState.activeTool === "text-shadow") {
         codeOutput.innerText = `text-shadow: ${tsStr};`;
+    }else if(appState.activeTool === "border-radius"){
+        codeOutput.innerText = `border-radius: ${borderRadiusStr};`;
     }
 }
 
