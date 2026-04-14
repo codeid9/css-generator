@@ -171,6 +171,9 @@ body {
     color: white;
     border: none;
 }
+#copy-code-btn:active{
+    transform: scale(0.9);
+}
 #target-box{
     height:300px;
     aspect-ratio: 1/1;
