@@ -78,6 +78,17 @@ function initInputs() {
         }
     });
     // text-shadow listeners
+    const tsControls = ["ts-x", "ts-y", "ts-blur", "ts-opacity", "ts-color"];
+    tsControls.forEach((id) => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener("input", (e) => {
+                const prop = id.split("-")[1];
+                appState.settings.textShadow[prop] = e.target.value;
+                renderPreview();
+            });
+        }
+    });
 }
 // View Output
 function renderPreview() {
@@ -89,13 +100,18 @@ function renderPreview() {
     const bsStr = `${bs.x}px ${bs.y}px ${bs.blur}px ${bs.spread}px ${bsColor}`;
 
     // text Shadow
+    const ts = s.textShadow;
+    const tsColor = HextoRGBA(ts.color, ts.opacity);
+    const tsStr = `${ts.x}px ${ts.y}px ${ts.blur}px ${tsColor}`;
 
     // apply css on target
     targetBox.style.boxShadow = bsStr;
-
+    targetBox.style.textShadow = tsStr;
     // Show Active Tool's output
     if (appState.activeTool === "box-shadow") {
         codeOutput.innerText = `box-shadow: ${bsStr};`;
+    } else if (appState.activeTool === "text-shadow") {
+        codeOutput.innerText = `text-shadow: ${tsStr};`;
     }
 }
 
