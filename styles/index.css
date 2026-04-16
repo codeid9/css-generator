@@ -159,6 +159,135 @@ input[type="range"] {
     width: 100%;
     cursor: pointer;
 }
+.custom-select {
+    width: 100%;
+    padding: 10px;
+    background: var(--input-bg);
+    border-radius: 8px;
+    color: var(--text-color);
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+
+.input-group.color {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 12px;
+}
+.color-wrapper {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+/* Hide the ugly default appearance */
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style the internal swatch */
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Container for spacing */
+.color-section {
+    margin-bottom: 20px;
+}
+
+/* The Main Button */
+.secondary-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    margin-top: 15px;
+    background-color: rgba(59, 130, 246, 0.1); /* Light blue tint */
+    color: #3b82f6; /* Blue text */
+    border: 1px dashed #3b82f6;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background-color: #3b82f6;
+    color: white;
+    border-style: solid;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.secondary-btn:active {
+    transform: translateY(0);
+}
+
+/* Trash Icon Button Styling (Remove Color) */
+.remove-color-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.remove-color-btn:hover {
+    transform: scale(1.2);
+}
+
+#colors-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px; 
+    overflow-y: auto; 
+    padding-right: 5px;
+}
+
+
+#colors-container::-webkit-scrollbar {
+    width: 4px;
+}
+#colors-container::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+/* Wrapper for each color input + remove button */
+.color-input-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    gap: 10px;
+    padding: 8px;
+    background: rgba(
+        255,
+        255,
+        255,
+        0.03
+    );
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
 /* preview area */
 .preview-area {
     width: 100%;

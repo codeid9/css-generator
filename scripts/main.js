@@ -31,10 +31,9 @@ const appState = {
             br: 8,
         },
         background: {
-            color1: "#3b82f6",
-            color2: "#2dd4bf",
+            type: "linear-gradient",
             angle: 90,
-            type: "linear",
+            colors: ["#3b82f6", "#2dd4bf", "#ff5733"],
         },
     },
 };
@@ -107,6 +106,17 @@ function initInputs() {
         }
     });
     // background listeners
+    // 1. Listen for Type change (Select)
+    const typeSelect = document.getElementById("bg-type");
+    typeSelect.addEventListener("change", (e) => {
+        appState.settings.background.type = e.target.value;
+        // Logical Fix: Conic aur Radial mein angle ka logic alag hota hai
+        const angleGroup = document.getElementById("angle-group");
+        angleGroup.style.display =
+            e.target.value === "radial-gradient" ? "none" : "block";
+        renderPreview();
+    });
+
     const bgControls = ["bg-color1", "bg-color2"];
     const angleInput = document.getElementById("bg-angle");
     const angleDisplay =
@@ -135,6 +145,50 @@ function initInputs() {
         }
     });
 }
+// render colors
+function renderColorInputs() {
+    const container = document.getElementById("colors-container");
+    if (!container) return; // Guard clause
+
+    container.innerHTML = "";
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "color-wrapper";
+
+    appState.settings.background.colors.forEach((color, index) => {
+        const div = document.createElement("div");
+        div.className = "color-input-item"; // for Styling
+        div.innerHTML = `
+            <input type="color" value="${color}" data-index="${index}" class="bg-color-picker">
+            <button class="remove-color-btn" data-index="${index}">
+                <i data-lucide="trash-2"></i>
+            </button>
+        `;
+
+        // 1. Color change listener
+        div.querySelector("input").addEventListener("input", (e) => {
+            appState.settings.background.colors[index] = e.target.value;
+            renderPreview();
+        });
+
+        // 2. Remove button listener
+        div.querySelector(".remove-color-btn").addEventListener("click", () => {
+            if (appState.settings.background.colors.length > 2) {
+                appState.settings.background.colors.splice(index, 1);
+                renderColorInputs();
+                renderPreview();
+            } else {
+                alert("atleast 2 colors should have!!");
+            }
+        });
+
+        wrapper.appendChild(div);
+    });
+
+    container.appendChild(wrapper);
+
+    if (window.lucide) lucide.createIcons();
+}
 // View Output
 function renderPreview() {
     const s = appState.settings;
@@ -152,13 +206,22 @@ function renderPreview() {
     const borderRadiusStr = `${br.tl}px ${br.tr}px ${br.br}px ${br.bl}px`;
     // background generator
     const bg = s.background;
-    const bgStr = `linear-gradient(${bg.angle}deg, ${bg.color1}, ${bg.color2})`;
+    const colorsStr = bg.colors.join(", ");
+    let finalStr = "";
+
+    if (bg.type === "linear-gradient") {
+        finalStr = `linear-gradient(${bg.angle}deg, ${colorsStr})`;
+    } else if (bg.type === "radial-gradient") {
+        finalStr = `radial-gradient(circle, ${colorsStr})`;
+    } else {
+        finalStr = `conic-gradient(from ${bg.angle}deg, ${colorsStr})`;
+    }
 
     // apply css on target
     targetBox.style.boxShadow = bsStr;
     targetBox.style.textShadow = tsStr;
     targetBox.style.borderRadius = borderRadiusStr;
-    targetBox.style.background = bgStr;
+    targetBox.style.background = finalStr;
 
     // Show Active Tool's output
     if (appState.activeTool === "box-shadow") {
@@ -168,7 +231,7 @@ function renderPreview() {
     } else if (appState.activeTool === "border-radius") {
         codeOutput.innerText = `border-radius: ${borderRadiusStr};`;
     } else if (appState.activeTool === "background") {
-        codeOutput.innerText = `background: ${bgStr};`;
+        codeOutput.innerText = `background: ${finalStr};`;
     }
 }
 
@@ -185,6 +248,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial setup
     initTabs();
     initInputs();
+    renderColorInputs();
+    document.getElementById("add-color-btn").addEventListener("click", () => {
+        appState.settings.background.colors.push("#ffffff");
+        renderColorInputs();
+        renderPreview();
+    });
     renderPreview();
 });
 // copy code to clipboard

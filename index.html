@@ -127,7 +127,7 @@
                                 id="bs-opacity"
                             />
                         </div>
-                        <div class="input-group">
+                        <div class="input-group color">
                             <label>Shadow Color</label>
                             <input type="color" id="bs-color" />
                         </div>
@@ -174,7 +174,7 @@
                                 id="ts-opacity"
                             />
                         </div>
-                        <div class="input-group">
+                        <div class="input-group color">
                             <label>Shadow Color</label>
                             <input type="color" id="ts-color" />
                         </div>
@@ -223,23 +223,22 @@
                     </div>
                     <div id="background-controls" class="tool-settings">
                         <div class="input-group">
-                            <label>Color 1</label>
-                            <input
-                                type="color"
-                                id="bg-color1"
-                                value="#3b82f6"
-                            />
+                            <label>Gradient Type</label>
+                            <select id="bg-type" class="custom-select">
+                                <option value="linear-gradient">Linear</option>
+                                <option value="radial-gradient">Radial</option>
+                                <option value="conic-gradient">Conic</option>
+                            </select>
                         </div>
-                        <div class="input-group">
-                            <label>Color 2</label>
-                            <input
-                                type="color"
-                                id="bg-color2"
-                                value="#2dd4bf"
-                            />
-                        </div>
-                        <div class="input-group">
-                            <label>Gradient Angle (deg)</label>
+
+                        <div id="colors-container" class="color-section"></div>
+
+                        <button id="add-color-btn" class="secondary-btn">
+                            <i data-lucide="plus"></i> Add Color
+                        </button>
+
+                        <div class="input-group" id="angle-group">
+                            <label>Angle / Rotation</label>
                             <input
                                 type="range"
                                 id="bg-angle"
