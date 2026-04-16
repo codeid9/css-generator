@@ -30,6 +30,12 @@ const appState = {
             bl: 8,
             br: 8,
         },
+        background: {
+            color1: "#3b82f6",
+            color2: "#2dd4bf",
+            angle: 90,
+            type: "linear",
+        },
     },
 };
 
@@ -89,17 +95,45 @@ function initInputs() {
         }
     });
     // border-radius listeners
-    const brControls = ["b-tl","b-tr","b-bl","b-br",];
-    brControls.forEach((id)=>{
+    const brControls = ["b-tl", "b-tr", "b-bl", "b-br"];
+    brControls.forEach((id) => {
         const input = document.getElementById(id);
-        if(input){
-            input.addEventListener("input",(e)=>{
+        if (input) {
+            input.addEventListener("input", (e) => {
                 const prop = id.split("-")[1];
                 appState.settings.borderRadius[prop] = e.target.value;
                 renderPreview();
-            })
+            });
         }
-    })
+    });
+    // background listeners
+    const bgControls = ["bg-color1", "bg-color2"];
+    const angleInput = document.getElementById("bg-angle");
+    const angleDisplay =
+        angleInput.parentElement.querySelector(".value-display");
+
+    if (angleInput) {
+        angleInput.addEventListener("input", (e) => {
+            const val = e.target.value;
+            appState.settings.background.angle = val;
+            if (angleDisplay) {
+                angleDisplay.innerText = `${val}°`;
+            }
+            renderPreview();
+        });
+    }
+
+    bgControls.forEach((id) => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener("input", (e) => {
+                // 'color1', 'color2', 'angle'
+                const prop = id.replace("bg-", "");
+                appState.settings.background[prop] = e.target.value;
+                renderPreview();
+            });
+        }
+    });
 }
 // View Output
 function renderPreview() {
@@ -109,7 +143,6 @@ function renderPreview() {
     const bs = s.boxShadow;
     const bsColor = HextoRGBA(bs.color, bs.opacity);
     const bsStr = `${bs.x}px ${bs.y}px ${bs.blur}px ${bs.spread}px ${bsColor}`;
-
     // text Shadow
     const ts = s.textShadow;
     const tsColor = HextoRGBA(ts.color, ts.opacity);
@@ -117,17 +150,25 @@ function renderPreview() {
     // border-radius
     const br = s.borderRadius;
     const borderRadiusStr = `${br.tl}px ${br.tr}px ${br.br}px ${br.bl}px`;
+    // background generator
+    const bg = s.background;
+    const bgStr = `linear-gradient(${bg.angle}deg, ${bg.color1}, ${bg.color2})`;
+
     // apply css on target
     targetBox.style.boxShadow = bsStr;
     targetBox.style.textShadow = tsStr;
     targetBox.style.borderRadius = borderRadiusStr;
+    targetBox.style.background = bgStr;
+
     // Show Active Tool's output
     if (appState.activeTool === "box-shadow") {
         codeOutput.innerText = `box-shadow: ${bsStr};`;
     } else if (appState.activeTool === "text-shadow") {
         codeOutput.innerText = `text-shadow: ${tsStr};`;
-    }else if(appState.activeTool === "border-radius"){
+    } else if (appState.activeTool === "border-radius") {
         codeOutput.innerText = `border-radius: ${borderRadiusStr};`;
+    } else if (appState.activeTool === "background") {
+        codeOutput.innerText = `background: ${bgStr};`;
     }
 }
 

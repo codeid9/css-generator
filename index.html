@@ -64,6 +64,13 @@
                     >
                         <i class="icon-btn" data-lucide="square"></i>
                     </button>
+                    <button
+                        class="tab-btn"
+                        data-tool="background"
+                        title="Background Generator"
+                    >
+                        <i class="icon-btn" data-lucide="palette"></i>
+                    </button>
                 </div>
                 <hr />
                 <div id="controls-tab">
@@ -71,67 +78,176 @@
                     <div id="box-shadow-controls" class="tool-settings active">
                         <div class="input-group">
                             <label>Shift Shadow (X)</label>
-                            <input type="range" min="-50" max="50" value="10" id="bs-x" />
+                            <input
+                                type="range"
+                                min="-50"
+                                max="50"
+                                value="10"
+                                id="bs-x"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Shift Shadow (Y)</label>
-                            <input type="range" min="-50" max="50" value="10" id="bs-y" />
+                            <input
+                                type="range"
+                                min="-50"
+                                max="50"
+                                value="10"
+                                id="bs-y"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Shadow Spreadness</label>
-                            <input type="range" min="-50" max="50" value="2" id="bs-spread" />
+                            <input
+                                type="range"
+                                min="-50"
+                                max="50"
+                                value="2"
+                                id="bs-spread"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Blur</label>
-                            <input type="range" min="0" max="100" value="20" id="bs-blur" />
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value="20"
+                                id="bs-blur"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Shadow Opacity</label>
-                            <input type="range" step="0.01" min="0" max="1" value="1" id="bs-opacity" />
+                            <input
+                                type="range"
+                                step="0.01"
+                                min="0"
+                                max="1"
+                                value="1"
+                                id="bs-opacity"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Shadow Color</label>
-                            <input type="color" id="bs-color"/>
+                            <input type="color" id="bs-color" />
                         </div>
                     </div>
                     <div id="text-shadow-controls" class="tool-settings">
-                         <div class="input-group">
+                        <div class="input-group">
                             <label>Shift Shadow (X)</label>
-                            <input type="range" min="-50" max="50" value="10" id="ts-x" />
+                            <input
+                                type="range"
+                                min="-50"
+                                max="50"
+                                value="10"
+                                id="ts-x"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Shift Shadow (Y)</label>
-                            <input type="range" min="-50" max="50" value="10" id="ts-y" />
+                            <input
+                                type="range"
+                                min="-50"
+                                max="50"
+                                value="10"
+                                id="ts-y"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Blur</label>
-                            <input type="range" min="0" max="100" value="20" id="ts-blur" />
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value="20"
+                                id="ts-blur"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Shadow Opacity</label>
-                            <input type="range" step="0.01" min="0" max="1" value="1" id="ts-opacity" />
+                            <input
+                                type="range"
+                                step="0.01"
+                                min="0"
+                                max="1"
+                                value="1"
+                                id="ts-opacity"
+                            />
                         </div>
                         <div class="input-group">
                             <label>Shadow Color</label>
-                            <input type="color" id="ts-color"/>
+                            <input type="color" id="ts-color" />
                         </div>
                     </div>
                     <div id="border-radius-controls" class="tool-settings">
-                         <div class="input-group">
+                        <div class="input-group">
                             <label>Border Top-left</label>
-                            <input type="range" min="0" max="1000" value="8" id="b-tl" />
+                            <input
+                                type="range"
+                                min="0"
+                                max="1000"
+                                value="8"
+                                id="b-tl"
+                            />
                         </div>
-                         <div class="input-group">
+                        <div class="input-group">
                             <label>Border Top-right</label>
-                            <input type="range" min="0" max="1000" value="8" id="b-tr" />
+                            <input
+                                type="range"
+                                min="0"
+                                max="1000"
+                                value="8"
+                                id="b-tr"
+                            />
                         </div>
-                         <div class="input-group">
+                        <div class="input-group">
                             <label>Border Bottom-left</label>
-                            <input type="range" min="0" max="1000" value="8" id="b-bl" />
+                            <input
+                                type="range"
+                                min="0"
+                                max="1000"
+                                value="8"
+                                id="b-bl"
+                            />
                         </div>
-                         <div class="input-group">
+                        <div class="input-group">
                             <label>Border Bottom-Right</label>
-                            <input type="range" min="0" max="1000" value="8" id="b-br" />
+                            <input
+                                type="range"
+                                min="0"
+                                max="1000"
+                                value="8"
+                                id="b-br"
+                            />
+                        </div>
+                    </div>
+                    <div id="background-controls" class="tool-settings">
+                        <div class="input-group">
+                            <label>Color 1</label>
+                            <input
+                                type="color"
+                                id="bg-color1"
+                                value="#3b82f6"
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label>Color 2</label>
+                            <input
+                                type="color"
+                                id="bg-color2"
+                                value="#2dd4bf"
+                            />
+                        </div>
+                        <div class="input-group">
+                            <label>Gradient Angle (deg)</label>
+                            <input
+                                type="range"
+                                id="bg-angle"
+                                min="0"
+                                max="360"
+                                value="90"
+                            />
+                            <span class="value-display">90°</span>
                         </div>
                     </div>
                 </div>
